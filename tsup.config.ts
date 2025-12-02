@@ -41,5 +41,19 @@ export default defineConfig([
       }
     },
   },
+  // Hooks entry
+  {
+    entry: ['src/hooks/index.ts'],
+    outDir: 'dist/hooks',
+    format: ['cjs', 'esm'],
+    dts: true,
+    sourcemap: true,
+    external: ['react', 'next', 'payload', '@payloadcms/plugin-ecommerce'],
+    esbuildOptions(options) {
+      options.banner = {
+        js: '"use client";',
+      }
+    },
+  },
 ])
 

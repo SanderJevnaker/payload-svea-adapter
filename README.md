@@ -134,9 +134,74 @@ export const POST = handler.POST
 export const OPTIONS = handler.OPTIONS
 ```
 
-### 4. Add Checkout Components
+### 4. Add Checkout with the Hook (Recommended)
 
-Use the provided React components in your checkout flow:
+Use the `useSveaCheckout` hook to manage the checkout flow with minimal code:
+
+```tsx
+// app/checkout/page.tsx
+'use client'
+
+import { usePayments } from '@payloadcms/plugin-ecommerce/client/react'
+import { useSveaCheckout } from '@jevnakern/payload-svea-adapter/hooks'
+import { SveaCheckoutContainer } from '@jevnakern/payload-svea-adapter/components'
+
+export default function CheckoutPage() {
+  const { initiatePayment } = usePayments()
+  const {
+    checkoutSnippet,
+    hasPendingOrder,
+    handleSveaPaymentResponse,
+    clearCheckout,
+    clearPendingOrder,
+  } = useSveaCheckout()
+
+  const handlePayWithSvea = async () => {
+    const response = await initiatePayment('svea', {
+      additionalData: {
+        customerEmail: 'customer@example.com',
+        billingAddress: { /* ... */ },
+      },
+    })
+    handleSveaPaymentResponse(response)
+  }
+
+  // Show pending order state
+  if (hasPendingOrder && !checkoutSnippet) {
+    return (
+      <div>
+        <h2>Payment in Progress</h2>
+        <p>You have a payment in progress.</p>
+        <a href="/checkout/confirm-order">Check Order Status</a>
+        <button onClick={clearPendingOrder}>Start New Order</button>
+      </div>
+    )
+  }
+
+  // Show Svea checkout
+  if (checkoutSnippet) {
+    return (
+      <div>
+        <h2>Complete your payment</h2>
+        <SveaCheckoutContainer snippet={checkoutSnippet} />
+        <button onClick={clearCheckout}>Cancel payment</button>
+      </div>
+    )
+  }
+
+  // Show payment button
+  return (
+    <div>
+      <h1>Checkout</h1>
+      <button onClick={handlePayWithSvea}>Pay with Svea</button>
+    </div>
+  )
+}
+```
+
+### 4b. Manual Checkout Components (Alternative)
+
+If you need more control, use the components directly:
 
 ```tsx
 // app/checkout/page.tsx
@@ -323,6 +388,26 @@ interface SveaConfirmOrderProps {
   renderSuccess?: () => React.ReactNode
   renderFailed?: (error: string | null, retry: () => void) => React.ReactNode
 }
+```
+
+### `useSveaCheckout`
+
+React hook for managing Svea checkout state.
+
+```tsx
+import { useSveaCheckout } from '@jevnakern/payload-svea-adapter/hooks'
+
+const {
+  checkoutSnippet,           // The checkout snippet to render
+  hasPendingOrder,           // Whether there's a pending (incomplete) order
+  handleSveaPaymentResponse, // Call after initiatePayment('svea')
+  clearCheckout,             // Clear the current checkout
+  clearPendingOrder,         // Clear stored pending order info
+  storedOrderInfo,           // The stored order info (for debugging)
+} = useSveaCheckout({
+  storageKey: 'svea:lastOrder',     // Optional: custom storage key
+  pendingOrderTimeout: 1800000,     // Optional: timeout in ms (default 30 min)
+})
 ```
 
 ### Route Handler Factories

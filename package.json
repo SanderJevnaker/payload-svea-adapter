@@ -1,6 +1,6 @@
 {
   "name": "@jevnakern/payload-svea-adapter",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Svea payment adapter for Payload CMS ecommerce plugin",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -25,6 +25,11 @@
       "types": "./dist/components/index.d.ts",
       "import": "./dist/components/index.mjs",
       "require": "./dist/components/index.js"
+    },
+    "./hooks": {
+      "types": "./dist/hooks/index.d.ts",
+      "import": "./dist/hooks/index.mjs",
+      "require": "./dist/hooks/index.js"
     }
   },
   "files": [
