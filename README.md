@@ -13,11 +13,11 @@ A Svea payment adapter for [Payload CMS](https://payloadcms.com/) with the [@pay
 ## Installation
 
 ```bash
-npm install @sanderjevnaker/payload-svea-adapter
+npm install @jevnakern/payload-svea-adapter
 # or
-yarn add @sanderjevnaker/payload-svea-adapter
+yarn add @jevnakern/payload-svea-adapter
 # or
-pnpm add @sanderjevnaker/payload-svea-adapter
+pnpm add @jevnakern/payload-svea-adapter
 ```
 
 ## Quick Start
@@ -29,7 +29,7 @@ Add the Svea adapter to your Payload ecommerce plugin configuration:
 ```ts
 // src/plugins/index.ts
 import { ecommercePlugin } from '@payloadcms/plugin-ecommerce'
-import { sveaAdapter, SVEA_API_URLS } from '@sanderjevnaker/payload-svea-adapter'
+import { sveaAdapter, SVEA_API_URLS } from '@jevnakern/payload-svea-adapter'
 
 export const plugins = [
   ecommercePlugin({
@@ -55,7 +55,7 @@ Add the client adapter to your payment providers:
 
 ```tsx
 // src/providers/index.tsx
-import { sveaAdapterClient } from '@sanderjevnaker/payload-svea-adapter/client'
+import { sveaAdapterClient } from '@jevnakern/payload-svea-adapter/client'
 import { PaymentsProvider } from '@payloadcms/plugin-ecommerce/client/react'
 
 export function Providers({ children }) {
@@ -79,7 +79,7 @@ Create the required API routes for Svea callbacks:
 
 ```ts
 // app/api/payments/svea/webhook/route.ts
-import { createSveaWebhookHandler } from '@sanderjevnaker/payload-svea-adapter/handlers'
+import { createSveaWebhookHandler } from '@jevnakern/payload-svea-adapter/handlers'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 
@@ -97,7 +97,7 @@ export const GET = handler.GET
 
 ```ts
 // app/api/payments/svea/validation-callback/[[...params]]/route.ts
-import { createSveaValidationCallbackHandler } from '@sanderjevnaker/payload-svea-adapter/handlers'
+import { createSveaValidationCallbackHandler } from '@jevnakern/payload-svea-adapter/handlers'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 
@@ -120,7 +120,7 @@ export const OPTIONS = handler.OPTIONS
 
 ```ts
 // app/api/payments/svea/confirm-order/route.ts
-import { createSveaConfirmOrderHandler } from '@sanderjevnaker/payload-svea-adapter/handlers'
+import { createSveaConfirmOrderHandler } from '@jevnakern/payload-svea-adapter/handlers'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 
@@ -144,7 +144,7 @@ Use the provided React components in your checkout flow:
 
 import { useState } from 'react'
 import { usePayments } from '@payloadcms/plugin-ecommerce/client/react'
-import { SveaCheckoutContainer } from '@sanderjevnaker/payload-svea-adapter/components'
+import { SveaCheckoutContainer } from '@jevnakern/payload-svea-adapter/components'
 
 export default function CheckoutPage() {
   const { initiatePayment } = usePayments()
@@ -207,7 +207,7 @@ Create a confirmation page to handle post-payment redirects:
 // app/checkout/confirm-order/[[...params]]/page.tsx
 'use client'
 
-import { SveaConfirmOrder } from '@sanderjevnaker/payload-svea-adapter/components'
+import { SveaConfirmOrder } from '@jevnakern/payload-svea-adapter/components'
 import { useCart } from '@payloadcms/plugin-ecommerce/client/react'
 
 export default function ConfirmOrderPage() {
@@ -352,7 +352,7 @@ import {
   normalizeCountryCode,      // Normalize country codes
   getOriginFromRequest,      // Extract origin URL from request
   generateClientOrderNumber, // Generate unique order number
-} from '@sanderjevnaker/payload-svea-adapter'
+} from '@jevnakern/payload-svea-adapter'
 ```
 
 ## TypeScript Types
@@ -371,7 +371,7 @@ import type {
   GetSveaOrderResponse,
   PayloadAddress,
   // ... and more
-} from '@sanderjevnaker/payload-svea-adapter'
+} from '@jevnakern/payload-svea-adapter'
 ```
 
 ## Testing with Svea Staging

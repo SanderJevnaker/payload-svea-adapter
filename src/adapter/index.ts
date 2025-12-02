@@ -114,7 +114,7 @@ function normalizeCartItems(
  *
  * @example
  * ```ts
- * import { sveaAdapter } from '@sanderjevnaker/payload-svea-adapter'
+ * import { sveaAdapter } from '@jevnakern/payload-svea-adapter'
  *
  * export const plugins = [
  *   ecommercePlugin({
