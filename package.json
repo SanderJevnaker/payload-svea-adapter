@@ -52,12 +52,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jevnakern/payload-svea-adapter.git"
+    "url": "git+https://github.com/SanderJevnaker/payload-svea-adapter.git"
   },
   "bugs": {
-    "url": "https://github.com/jevnakern/payload-svea-adapter/issues"
+    "url": "https://github.com/SanderJevnaker/payload-svea-adapter/issues"
   },
-  "homepage": "https://github.com/jevnakern/payload-svea-adapter#readme",
+  "homepage": "https://github.com/SanderJevnaker/payload-svea-adapter#readme",
   "peerDependencies": {
     "@payloadcms/plugin-ecommerce": ">=3.0.0",
     "next": ">=14.0.0",
