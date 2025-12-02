@@ -1,0 +1,86 @@
+{
+  "name": "@sanderjevnaker/payload-svea-adapter",
+  "version": "0.1.0",
+  "description": "Svea payment adapter for Payload CMS ecommerce plugin",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./client": {
+      "types": "./dist/client.d.ts",
+      "import": "./dist/client.mjs",
+      "require": "./dist/client.js"
+    },
+    "./handlers": {
+      "types": "./dist/handlers/index.d.ts",
+      "import": "./dist/handlers/index.mjs",
+      "require": "./dist/handlers/index.js"
+    },
+    "./components": {
+      "types": "./dist/components/index.d.ts",
+      "import": "./dist/components/index.mjs",
+      "require": "./dist/components/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "eslint src/",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "payload",
+    "payloadcms",
+    "svea",
+    "payment",
+    "ecommerce",
+    "checkout",
+    "adapter"
+  ],
+  "author": "Sander Jevnaker",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanderjevnaker/payload-svea-adapter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sanderjevnaker/payload-svea-adapter/issues"
+  },
+  "homepage": "https://github.com/sanderjevnaker/payload-svea-adapter#readme",
+  "peerDependencies": {
+    "@payloadcms/plugin-ecommerce": ">=3.0.0",
+    "next": ">=14.0.0",
+    "payload": ">=3.0.0",
+    "react": ">=18.0.0"
+  },
+  "peerDependenciesMeta": {
+    "next": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@payloadcms/plugin-ecommerce": "^3.0.0",
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.0.0",
+    "next": "^15.0.0",
+    "payload": "^3.0.0",
+    "react": "^19.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  }
+}
+
